@@ -1,1 +1,1 @@
-# Exposici-n-LP2
+# Exposición-LP2
