@@ -11,6 +11,7 @@
     </td>
   </tr>
 </table>
+
 **Docente:** Denise Rosalyn Chalan Llajaruna
 --
 ## 🧮 Evaluación Grupal (10%)
