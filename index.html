@@ -209,10 +209,11 @@ footer {
 .slide-content {
     width: 90%;
     max-width: 1200px;
-    height: calc(100vh - 100px);
+    height: calc(100vh - 240px);
     overflow-y: auto;
-    padding: 30px 10px 0 0; 
+    padding: 40px 10px 120px 0; 
 }
+
 
 
     
@@ -556,59 +557,213 @@ result_df = pd.DataFrame({
         </div>
     </section>
 
-    <!-- SLIDE 6: VISUALIZACIÓN ADICIONAL -->
-<!-- SLIDE 6: VISUALIZACIÓN ADICIONAL -->
-<!-- SLIDE 6: VISUALIZACIÓN ADICIONAL -->
+
+<!-- SLIDE 6: GÉNERO POR ESPECIES -->
 <section>
     <div class="slide-content">
-        <h2>🎨 Visualización Adicional</h2>
+        <h2>🎨 Distribución de Género por Especie</h2>
 
-        <!-- Cambié a una sola columna para máximo tamaño -->
-        <div style="display: flex; flex-direction: column; align-items: center; gap: 3rem; margin: 2.5rem 0;">
-            <!-- Gráfico 1: Ocupa casi todo el ancho -->
-            <div style="width: 95%; max-width: 900px;">
-                <div class="main-chart" style="margin: 0; padding: 2.5rem;">
-                    <div class="chart-title" style="font-size: 2rem; margin-bottom: 1.5rem;">Comparación de Géneros</div>
-                    <img src="https://raw.githubusercontent.com/mar93681-jpg/Exposicion---LP2/refs/heads/main/graficos/genero%20x%20species.png" 
-                         alt="Comparación de géneros" 
-                         style="width: 100%; height: auto; display: block; border: 4px solid #ffe81f; border-radius: 15px; max-height: 500px; object-fit: contain;">
-                    <p style="font-size: 1.3rem; text-align: center; margin-top: 1.2rem;">Gráfico de barras comparativo</p>
+        <!-- Gráfico 1: Barras apiladas -->
+        <div style="width: 95%; max-width: 900px; margin: 2.5rem auto;">
+            <div class="main-chart">
+                <div class="chart-title">
+                    Distribución de Género por Especie (Top 10)
                 </div>
-            </div>
 
-            <!-- Gráfico 2: Ocupa casi todo el ancho -->
-            <div style="width: 95%; max-width: 900px;">
-                <div class="main-chart" style="margin: 0; padding: 2.5rem;">
-                    <div class="chart-title" style="font-size: 2rem; margin-bottom: 1.5rem;">Especie vs Color de Ojos</div>
-                    <img src="https://raw.githubusercontent.com/mar93681-jpg/Exposicion---LP2/refs/heads/main/graficos/especievscolor.png" 
-                         alt="Gráfico Especie vs Color de Ojos" 
-                         style="width: 100%; height: auto; display: block; border: 4px solid #4cc9f0; border-radius: 15px; max-height: 500px; object-fit: contain;">
-                    <p style="font-size: 1.3rem; text-align: center; margin-top: 1.2rem;">Gráfico de dispersión</p>
-                </div>
+                <img src="https://raw.githubusercontent.com/mar93681-jpg/Exposicion---LP2/refs/heads/main/graficos/genero%20x%20species.png"
+                     alt="Gráfico de barras apiladas género por especie"
+                     class="chart-img">
+
+                <p style="text-align: center; margin-top: 1rem;">
+                    Comparación apilada de géneros en las 10 especies con más personajes
+                </p>
             </div>
         </div>
 
+        <!-- Código resumido: Barras apiladas -->
         <div class="code-minimal fade-in">
-            <h3>Código para gráficos avanzados:</h3>
-            <pre><code><span class="code-comment"># Personalización avanzada de gráficos (TAMAÑO MÁXIMO)</span>
-fig, axes = plt.subplots(2, 1, figsize=(22, 16))  <span class="code-comment"># Cambié a 2 filas, 1 columna</span>
+            <h3>Código – Gráfico de barras apiladas</h3>
+            <pre><code><span class="code-comment"># Gráfico de barras apiladas (Top 10 especies)</span>
+plt.figure(figsize=(12,7))
+data_plot.plot(
+    kind='bar',
+    stacked=True,
+    color=colors,
+    figsize=(12,7)
+)
 
-<span class="code-comment"># Gráfico 1: Barras horizontales</span>
-species_counts.head(5).plot(kind='barh', ax=axes[0], color='#4cc9f0')
-axes[0].set_title('Top 5 Especies', fontsize=18, fontweight='bold')
-
-<span class="code-comment"># Gráfico 2: Gráfico de dispersión</span>
-sns.scatterplot(data=df_people, x='height', y='mass', hue='gender', ax=axes[1], s=100)  <span class="code-comment"># s=100 aumenta tamaño puntos</span>
-axes[1].set_title('Especie vs Color de Ojos', fontsize=18, fontweight='bold')
-axes[1].tick_params(labelsize=14)  <span class="code-comment"># Aumenta tamaño de números en ejes</span>
-
-plt.tight_layout(pad=4.0)  <span class="code-comment"># Más espacio entre gráficos</span>
+plt.title('Distribución de Género por Especie (Top 10)', fontsize=15)
+plt.xlabel('Especie')
+plt.ylabel('Cantidad de personajes')
+plt.xticks(rotation=45, ha='right')
+plt.legend(title='Género')
+plt.tight_layout()
 plt.show()</code></pre>
+        </div>
+
+        <!-- Gráfico 2: Heatmap -->
+        <div style="width: 95%; max-width: 900px; margin: 3rem auto;">
+            <div class="main-chart">
+                <div class="chart-title">
+                    Mapa de Calor: Género vs Especie
+                </div>
+
+                <img src="https://raw.githubusercontent.com/mar93681-jpg/Exposicion---LP2/refs/heads/main/graficos/genero%20specie%20calor.png"
+                     alt="Mapa de calor género por especie"
+                     class="chart-img">
+
+                <p style="text-align: center; margin-top: 1rem;">
+                    Intensidad de personajes por género y especie (Top 10)
+                </p>
+            </div>
+        </div>
+
+        <!-- Código resumido: Heatmap -->
+        <div class="code-minimal fade-in">
+            <h3>Código – Mapa de calor (Heatmap)</h3>
+            <pre><code><span class="code-comment"># Preparar tabla Género-Especie (Top 10)</span>
+tabla_para_graficar = (
+    tabla_genero_especie
+    .drop('Total', axis=0)
+    .sort_values(by='Total', ascending=False)
+    .head(10)
+)
+
+<span class="code-comment"># Mapa de calor</span>
+plt.figure(figsize=(12,7))
+sns.heatmap(
+    tabla_para_graficar.drop('Total', axis=1),
+    annot=True,
+    fmt='d',
+    cmap='YlOrRd',
+    linewidths=.5
+)
+
+plt.title('Mapa de Calor: Género por Especie (Top 10)', fontsize=15)
+plt.xlabel('Género')
+plt.ylabel('Especie')
+plt.show()</code></pre>
+        </div>
+
+        <!-- Conclusión corta -->
+        <div class="info-card fade-in">
+            <h3>🔍 Interpretación rápida</h3>
+            <p>
+                Las especies más pobladas presentan una clara predominancia masculina,
+                mientras que el mapa de calor permite identificar rápidamente
+                especies con mayor diversidad de género.
+            </p>
         </div>
     </div>
 </section>
-    
-    <!-- SLIDE 7: RETOS TÉCNICOS -->
+
+
+
+
+<!-- SLIDE 7: COLOR DE OJOS POR ESPECIE -->
+<section>
+    <div class="slide-content">
+        <h2>👁️ Distribución de Colores de Ojos por Especie</h2>
+
+        <!-- Gráfico: Barras apiladas -->
+        <div style="width: 95%; max-width: 900px; margin: 2.5rem auto;">
+            <div class="main-chart">
+                <div class="chart-title">
+                    Distribución de Colores de Ojos por Especie
+                </div>
+
+                <img src="https://raw.githubusercontent.com/mar93681-jpg/Exposicion---LP2/refs/heads/main/graficos/ojos%20por%20especie.png"
+                     alt="Gráfico de colores de ojos por especie"
+                     class="chart-img">
+
+                <p style="text-align: center; margin-top: 1rem;">
+                    Gráfico de barras apiladas mostrando la distribución de colores de ojos
+                </p>
+            </div>
+        </div>
+
+        <!-- Código: Gráfico -->
+        <div class="code-minimal fade-in">
+            <h3>Código – Gráfico de barras apiladas</h3>
+            <pre><code><span class="code-comment"># Barras apiladas: Color de ojos por especie</span>
+tabla_top.plot(
+    kind='bar',
+    stacked=True,
+    figsize=(12,7),
+    color=colors
+)
+
+plt.title('Distribución de Colores de Ojos por Especie')
+plt.xlabel('Especie')
+plt.ylabel('Cantidad de personajes')
+plt.legend(
+    title='Color de ojos',
+    bbox_to_anchor=(1.05, 1),
+    loc='upper left'
+)
+plt.tight_layout()
+plt.show()</code></pre>
+        </div>
+
+        <!-- Tabla: Heatmap -->
+        <div style="width: 95%; max-width: 900px; margin: 3rem auto;">
+            <div class="main-chart">
+                <div class="chart-title">
+                    Tabla de Contingencia: Especie vs Color de Ojos
+                </div>
+
+                <img src="https://raw.githubusercontent.com/mar93681-jpg/Exposicion---LP2/refs/heads/main/graficos/ojos%20por%20especie.png"
+                     alt="Tabla de contingencia especie vs color de ojos"
+                     class="chart-img">
+
+                <p style="text-align: center; margin-top: 1rem;">
+                    Mapa de calor para identificar patrones genéticos entre especies
+                </p>
+            </div>
+        </div>
+
+        <!-- Código: Tabla -->
+        <div class="code-minimal fade-in">
+            <h3>Código – Tabla de contingencia (Heatmap)</h3>
+            <pre><code><span class="code-comment"># Tabla de contingencia: Especie vs Color de Ojos</span>
+plt.figure(figsize=(12, 8))
+sns.heatmap(
+    contingency_table.iloc[:-1, :-1],  <span class="code-comment"># Excluir totales</span>
+    annot=True,
+    fmt='d',
+    cmap='YlOrRd',
+    linewidths=0.5
+)
+
+plt.title(
+    'Tabla de Contingencia: Especie vs Color de Ojos (Patrones Genéticos)',
+    fontsize=14
+)
+plt.xlabel('Color de Ojos')
+plt.ylabel('Especie')
+plt.tight_layout()
+plt.show()</code></pre>
+        </div>
+
+        <!-- Interpretación breve -->
+        <div class="info-card fade-in">
+            <h3>🔍 Interpretación</h3>
+            <p>
+                El gráfico muestra la diversidad de colores de ojos por especie,
+                mientras que la tabla de calor permite identificar patrones dominantes
+                y combinaciones poco frecuentes.
+            </p>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+
+    <!-- SLIDE 8: RETOS TÉCNICOS -->
     <section>
         <div class="slide-content">
             <h2>⚡ Retos Técnicos Superados</h2>
@@ -651,7 +806,7 @@ df_people['especie_nombre'] = df_people.apply(get_species, axis=1)</code></pre>
         </div>
     </section>
 
-    <!-- SLIDE 8: CONCLUSIONES -->
+    <!-- SLIDE 9: CONCLUSIONES -->
     <section>
         <div class="slide-content">
             <h2>📝 Conclusiones del Análisis</h2>
@@ -699,7 +854,7 @@ df_people['especie_nombre'] = df_people.apply(get_species, axis=1)</code></pre>
         </div>
     </section>
 
-    <!-- SLIDE 9: FINAL -->
+    <!-- SLIDE 10: FINAL -->
     <section>
         <div class="slide-content">
             <div style="text-align: center;">
