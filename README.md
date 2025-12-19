@@ -22,7 +22,7 @@
 ## 👥 Integrantes del grupo
 
 | Integrante   |  Participación   |
-|---------------|----------|----------|
+|---------------|----------|
 | Malvacedo Quiñonez, Jean Franco  |  100% |
 | Cruz Cruz, Hilary Penelope       |  100% |
 | Chávez Mendoza, Maria Fernanda   | 100% |
