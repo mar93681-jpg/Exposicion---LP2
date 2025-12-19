@@ -516,9 +516,9 @@ fig, axes = plt.subplots(1, 2, figsize=(15, 5))
 species_counts.head(5).plot(kind='barh', ax=axes[0], color='#4cc9f0')
 axes[0].set_title('Top 5 Especies')
 
-<span class="code-comment"># Gráfico 2: Dispersión con seaborn</span>
+<span class="code-comment"># Gráfico 2: Mapa de calor </span>
 sns.scatterplot(data=df_people, x='height', y='mass', hue='gender', ax=axes[1])
-axes[1].set_title('Relación Altura vs Peso')
+axes[1].set_title('Especie vs Color de Ojos')
 
 plt.tight_layout()
 plt.show()</code></pre>
