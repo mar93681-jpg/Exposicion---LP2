@@ -486,53 +486,56 @@ result_df = pd.DataFrame({
 
     <!-- SLIDE 6: VISUALIZACIÓN ADICIONAL -->
 <!-- SLIDE 6: VISUALIZACIÓN ADICIONAL -->
+<!-- SLIDE 6: VISUALIZACIÓN ADICIONAL -->
 <section>
     <div class="slide-content">
         <h2>🎨 Visualización Adicional</h2>
 
-        <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 3rem; margin: 2.5rem 0;">
-            <!-- Primer gráfico ampliado -->
-            <div style="flex: 1; min-width: 450px; max-width: 600px;">
-                <div class="main-chart" style="margin: 0; padding: 2rem;">
-                    <div class="chart-title" style="font-size: 1.8rem; margin-bottom: 1.5rem;">Comparación de Géneros</div>
+        <!-- Cambié a una sola columna para máximo tamaño -->
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 3rem; margin: 2.5rem 0;">
+            <!-- Gráfico 1: Ocupa casi todo el ancho -->
+            <div style="width: 95%; max-width: 900px;">
+                <div class="main-chart" style="margin: 0; padding: 2.5rem;">
+                    <div class="chart-title" style="font-size: 2rem; margin-bottom: 1.5rem;">Comparación de Géneros</div>
                     <img src="https://raw.githubusercontent.com/mar93681-jpg/Exposicion---LP2/refs/heads/main/graficos/genero%20x%20species.png" 
                          alt="Comparación de géneros" 
-                         style="width: 100%; height: auto; display: block; border: 3px solid #ffe81f; border-radius: 12px;">
-                    <p style="font-size: 1.1rem; text-align: center; margin-top: 1rem;">Gráfico de barras comparativo</p>
+                         style="width: 100%; height: auto; display: block; border: 4px solid #ffe81f; border-radius: 15px; max-height: 500px; object-fit: contain;">
+                    <p style="font-size: 1.3rem; text-align: center; margin-top: 1.2rem;">Gráfico de barras comparativo</p>
                 </div>
             </div>
 
-            <!-- Segundo gráfico ampliado -->
-            <div style="flex: 1; min-width: 450px; max-width: 600px;">
-                <div class="main-chart" style="margin: 0; padding: 2rem;">
-                    <div class="chart-title" style="font-size: 1.8rem; margin-bottom: 1.5rem;">Especie vs Color de Ojos</div>
+            <!-- Gráfico 2: Ocupa casi todo el ancho -->
+            <div style="width: 95%; max-width: 900px;">
+                <div class="main-chart" style="margin: 0; padding: 2.5rem;">
+                    <div class="chart-title" style="font-size: 2rem; margin-bottom: 1.5rem;">Especie vs Color de Ojos</div>
                     <img src="https://raw.githubusercontent.com/mar93681-jpg/Exposicion---LP2/refs/heads/main/graficos/especievscolor.png" 
                          alt="Gráfico Especie vs Color de Ojos" 
-                         style="width: 100%; height: auto; display: block; border: 3px solid #4cc9f0; border-radius: 12px;">
-                    <p style="font-size: 1.1rem; text-align: center; margin-top: 1rem;">Gráfico de dispersión</p>
+                         style="width: 100%; height: auto; display: block; border: 4px solid #4cc9f0; border-radius: 15px; max-height: 500px; object-fit: contain;">
+                    <p style="font-size: 1.3rem; text-align: center; margin-top: 1.2rem;">Gráfico de dispersión</p>
                 </div>
             </div>
         </div>
 
         <div class="code-minimal fade-in">
             <h3>Código para gráficos avanzados:</h3>
-            <pre><code><span class="code-comment"># Personalización avanzada de gráficos</span>
-fig, axes = plt.subplots(1, 2, figsize=(18, 7))
+            <pre><code><span class="code-comment"># Personalización avanzada de gráficos (TAMAÑO MÁXIMO)</span>
+fig, axes = plt.subplots(2, 1, figsize=(22, 16))  <span class="code-comment"># Cambié a 2 filas, 1 columna</span>
 
 <span class="code-comment"># Gráfico 1: Barras horizontales</span>
 species_counts.head(5).plot(kind='barh', ax=axes[0], color='#4cc9f0')
-axes[0].set_title('Top 5 Especies', fontsize=14)
+axes[0].set_title('Top 5 Especies', fontsize=18, fontweight='bold')
 
 <span class="code-comment"># Gráfico 2: Gráfico de dispersión</span>
-sns.scatterplot(data=df_people, x='height', y='mass', hue='gender', ax=axes[1])
-axes[1].set_title('Especie vs Color de Ojos', fontsize=14)
+sns.scatterplot(data=df_people, x='height', y='mass', hue='gender', ax=axes[1], s=100)  <span class="code-comment"># s=100 aumenta tamaño puntos</span>
+axes[1].set_title('Especie vs Color de Ojos', fontsize=18, fontweight='bold')
+axes[1].tick_params(labelsize=14)  <span class="code-comment"># Aumenta tamaño de números en ejes</span>
 
-plt.tight_layout()
+plt.tight_layout(pad=4.0)  <span class="code-comment"># Más espacio entre gráficos</span>
 plt.show()</code></pre>
         </div>
     </div>
 </section>
-
+    
     <!-- SLIDE 7: RETOS TÉCNICOS -->
     <section>
         <div class="slide-content">
