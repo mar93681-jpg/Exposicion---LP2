@@ -516,9 +516,9 @@ fig, axes = plt.subplots(1, 2, figsize=(15, 5))
 species_counts.head(5).plot(kind='barh', ax=axes[0], color='#4cc9f0')
 axes[0].set_title('Top 5 Especies')
 
-<span class="code-comment"># Gráfico 2: Mapa de calor </span>
-sns.scatterplot(data=df_people, x='height', y='mass', hue='gender', ax=axes[1])
-axes[1].set_title('Especie vs Color de Ojos')
+<!-- Imagen del gráfico especie vs color de ojos -->
+<img src="graficos/especievscolor.png" alt="Gráfico Especie vs Color de Ojos" 
+     style="width: 100%; max-height: 250px; object-fit: contain; margin: 10px 0; border: 2px solid #4cc9f0; border-radius: 8px;">
 
 plt.tight_layout()
 plt.show()</code></pre>
