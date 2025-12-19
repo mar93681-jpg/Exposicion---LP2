@@ -1,1 +1,745 @@
 <!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Exposición LP2 - Análisis API Star Wars</title>
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    color: #333;
+    background-color: #0a0a2a;
+    overflow: hidden;
+}
+
+/* === ENCABEZADO === */
+header {
+    background: linear-gradient(135deg, #000428 0%, #004e92 100%);
+    color: #ffe81f;
+    text-align: center;
+    padding: 1.5rem 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 10;
+    border-bottom: 3px solid #ffe81f;
+    font-family: 'Arial Black', sans-serif;
+}
+
+/* === CONTENEDOR PRINCIPAL === */
+main {
+    display: flex;
+    transition: transform 0.6s ease-in-out;
+    height: 100vh;
+    width: 100%;
+}
+
+/* === CADA SLIDE === */
+section {
+    min-width: 100%;
+    height: 100vh;
+    padding: 5rem 2rem 2rem;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow-y: auto;
+    color: white;
+}
+
+/* === TÍTULOS === */
+h1 {
+    color: #ffe81f;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    font-size: 2.5rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+h2 {
+    color: #ffe81f;
+    margin-bottom: 1rem;
+    text-align: center;
+    font-size: 2rem;
+}
+
+h3 {
+    color: #4cc9f0;
+    margin: 1.5rem 0 0.5rem 0;
+    font-size: 1.5rem;
+}
+
+p {
+    max-width: 900px;
+    text-align: center;
+    width: 100%;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    color: #e0e0e0;
+}
+
+/* === GRÁFICAS PRINCIPALES === */
+.main-chart {
+    width: 80%;
+    max-width: 700px;
+    margin: 2rem auto;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    border: 2px solid #4cc9f0;
+}
+
+.chart-img {
+    width: 100%;
+    border-radius: 10px;
+    border: 3px solid #ffe81f;
+}
+
+.chart-title {
+    color: #ffe81f;
+    text-align: center;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+/* === CÓDIGO MINIMALISTA === */
+.code-minimal {
+    width: 80%;
+    max-width: 600px;
+    background: #1e1e1e;
+    padding: 1rem;
+    border-radius: 10px;
+    margin: 1rem auto;
+    border-left: 5px solid #ffe81f;
+    font-family: 'Courier New', monospace;
+    color: #4cc9f0;
+    font-size: 0.9rem;
+    overflow-x: auto;
+}
+
+.code-minimal pre {
+    margin: 0;
+    padding: 0.5rem;
+}
+
+.code-comment {
+    color: #6a9955;
+    font-style: italic;
+}
+
+/* === NAVEGACIÓN === */
+.nav-buttons {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 1rem;
+    z-index: 20;
+}
+
+button {
+    background: linear-gradient(135deg, #000428 0%, #004e92 100%);
+    color: #ffe81f;
+    border: 2px solid #ffe81f;
+    padding: 0.8rem 1.5rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all 0.3s;
+    font-weight: bold;
+}
+
+button:hover {
+    background: linear-gradient(135deg, #004e92 0%, #000428 100%);
+    transform: translateY(-2px);
+}
+
+/* === PIE DE PÁGINA === */
+footer {
+    background: rgba(0, 0, 0, 0.8);
+    color: #ffe81f;
+    text-align: center;
+    padding: 1rem 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 5;
+    border-top: 2px solid #ffe81f;
+}
+
+/* === EQUIPO === */
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    max-width: 900px;
+    width: 100%;
+    margin: 2rem 0;
+}
+
+.team-member {
+    background: rgba(255, 232, 31, 0.1);
+    padding: 1.5rem;
+    border-radius: 10px;
+    text-align: center;
+    border: 2px solid #4cc9f0;
+    color: white;
+    transition: transform 0.3s;
+}
+
+.team-member:hover {
+    transform: translateY(-5px);
+    border-color: #ffe81f;
+}
+
+/* === CONTENIDO DE SLIDES === */
+.slide-content {
+    width: 90%;
+    max-width: 1200px;
+    height: calc(100vh - 120px);
+    overflow-y: auto;
+    padding-right: 10px;
+}
+
+/* Personalizar scrollbar */
+.slide-content::-webkit-scrollbar {
+    width: 10px;
+}
+
+.slide-content::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+}
+
+.slide-content::-webkit-scrollbar-thumb {
+    background: #ffe81f;
+    border-radius: 10px;
+}
+
+/* === TARJETA DE INFO === */
+.info-card {
+    background: rgba(255, 232, 31, 0.1);
+    padding: 2rem;
+    border-radius: 15px;
+    margin: 2rem auto;
+    border: 2px solid #4cc9f0;
+    max-width: 800px;
+    text-align: center;
+}
+
+.info-card h3 {
+    color: #ffe81f;
+    margin-top: 0;
+}
+
+/* === ANIMACIONES === */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+    animation: fadeIn 0.8s ease-out;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 768px) {
+    .team-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .main-chart {
+        width: 95%;
+        padding: 1rem;
+    }
+    
+    h1 { font-size: 2rem; }
+    h2 { font-size: 1.5rem; }
+}
+</style>
+</head>
+<body>
+
+<header>
+    <h1>📊 Exposición LP2 - Análisis de API Star Wars</h1>
+</header>
+
+<main id="slides">
+
+    <!-- SLIDE 1: PORTADA -->
+    <section>
+        <div class="slide-content">
+            <div class="info-card fade-in">
+                <h2>Universidad Nacional Agraria La Molina</h2>
+                <p>Facultad de Economía y Planificación</p>
+                <p>Departamento de Estadística e Informática</p>
+                
+                <div style="margin: 2rem 0; padding: 1rem; border-top: 2px solid #ffe81f; border-bottom: 2px solid #ffe81f;">
+                    <h3>🧮 Evaluación Grupal - Lenguaje de Programación 2</h3>
+                    <p><strong>Tema:</strong> Uso de API con análisis mediante gráficas</p>
+                    <p><strong>Docente:</strong> Denise Rosalyn Chalan Llajaruna</p>
+                    <p><strong>Fecha:</strong> 19 de diciembre de 2025</p>
+                </div>
+                
+                <h3>👥 Equipo de Trabajo</h3>
+                <div class="team-grid">
+                    <div class="team-member">Jean Franco<br>Malvacedo Quiñonez</div>
+                    <div class="team-member">Hilary Penélope<br>Cruz Cruz</div>
+                    <div class="team-member">María Fernanda<br>Chávez Mendoza</div>
+                    <div class="team-member">Piero César<br>Mejía Auccapoma</div>
+                    <div class="team-member">Omar Sebastián<br>Castillo Torres</div>
+                    <div class="team-member">Jhordy Fabrizio<br>López Ruiz</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SLIDE 2: INTRODUCCIÓN -->
+    <section>
+        <div class="slide-content">
+            <h2>🎯 Objetivo del Proyecto</h2>
+            
+            <div class="info-card fade-in">
+                <p>Realizar un análisis completo de datos del universo Star Wars utilizando la API pública SWAPI, con enfoque en:</p>
+                
+                <div style="text-align: left; max-width: 600px; margin: 2rem auto;">
+                    <div style="display: flex; align-items: center; margin: 1rem 0;">
+                        <div style="background: #ffe81f; color: #000; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 1rem; font-weight: bold;">1</div>
+                        <span>Extraer datos de personajes, especies y planetas</span>
+                    </div>
+                    
+                    <div style="display: flex; align-items: center; margin: 1rem 0;">
+                        <div style="background: #4cc9f0; color: #000; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 1rem; font-weight: bold;">2</div>
+                        <span>Analizar distribución de géneros y especies</span>
+                    </div>
+                    
+                    <div style="display: flex; align-items: center; margin: 1rem 0;">
+                        <div style="background: #f72585; color: #fff; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 1rem; font-weight: bold;">3</div>
+                        <span>Crear visualizaciones efectivas de los hallazgos</span>
+                    </div>
+                </div>
+            </div>
+            
+            <h3>🛠️ Tecnologías Utilizadas</h3>
+            <div style="display: flex; justify-content: center; gap: 1rem; margin-top: 1rem; flex-wrap: wrap;">
+                <div style="background: rgba(255, 232, 31, 0.2); padding: 0.5rem 1rem; border-radius: 20px; border: 1px solid #ffe81f;">Python</div>
+                <div style="background: rgba(76, 201, 240, 0.2); padding: 0.5rem 1rem; border-radius: 20px; border: 1px solid #4cc9f0;">Pandas</div>
+                <div style="background: rgba(247, 37, 133, 0.2); padding: 0.5rem 1rem; border-radius: 20px; border: 1px solid #f72585;">Matplotlib</div>
+                <div style="background: rgba(0, 180, 216, 0.2); padding: 0.5rem 1rem; border-radius: 20px; border: 1px solid #00b4d8;">Seaborn</div>
+                <div style="background: rgba(114, 9, 183, 0.2); padding: 0.5rem 1rem; border-radius: 20px; border: 1px solid #7209b7;">Requests</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SLIDE 3: GRÁFICO 1 - DISTRIBUCIÓN DE GÉNEROS -->
+    <section>
+        <div class="slide-content">
+            <h2>📈 Gráfico 1: Distribución de Géneros</h2>
+            
+            <div class="main-chart fade-in">
+                <div class="chart-title">Proporción de Géneros en Personajes de Star Wars</div>
+                <img src="https://i.imgur.com/TrYr7Xg.png" alt="Gráfico circular de distribución de géneros" class="chart-img">
+                <p style="text-align: center; margin-top: 1rem; color: #4cc9f0;">
+                    Análisis de la composición de géneros entre todos los personajes
+                </p>
+            </div>
+            
+            <div class="code-minimal fade-in">
+                <h3>Código para generar este gráfico:</h3>
+                <pre><code><span class="code-comment"># Gráfico circular de distribución de géneros</span>
+plt.figure(figsize=(8,5))
+df_people['gender'].value_counts().plot(kind='pie', autopct='%1.1f%%')
+plt.title('Géneros en Star Wars')
+plt.show()</code></pre>
+            </div>
+            
+            <div style="max-width: 800px; margin: 1rem auto; padding: 1rem; background: rgba(255, 232, 31, 0.1); border-radius: 10px;">
+                <h3>💡 Análisis del Gráfico</h3>
+                <p>El gráfico muestra que la mayoría de personajes son masculinos, seguidos por femeninos. 
+                Un porcentaje menor corresponde a personajes sin género definido o droides.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SLIDE 4: GRÁFICO 2 - TOP 10 ESPECIES -->
+    <section>
+        <div class="slide-content">
+            <h2>📊 Gráfico 2: Top 10 Especies</h2>
+            
+            <div class="main-chart fade-in">
+                <div class="chart-title">Especies Más Comunes en Star Wars</div>
+                <img src="https://i.imgur.com/QXpNk9R.png" alt="Gráfico de barras de especies" class="chart-img">
+                <p style="text-align: center; margin-top: 1rem; color: #4cc9f0;">
+                    Ranking de las 10 especies con más personajes
+                </p>
+            </div>
+            
+            <div class="code-minimal fade-in">
+                <h3>Código para procesar datos e integrar especies:</h3>
+                <pre><code><span class="code-comment"># Integrar especies con personajes</span>
+species_list = []
+for _, row in df_people.iterrows():
+    if row['species']:
+        for sp_url in row['species']:
+            species_list.append(species_map[sp_url])
+    else:
+        species_list.append('Human')
+
+<span class="code-comment"># Contar frecuencias y crear gráfico</span>
+species_counts = pd.Series(species_list).value_counts()
+plt.figure(figsize=(10,6))
+species_counts.head(10).plot(kind='bar')
+plt.title('Top 10 Especies por Número de Personajes')
+plt.show()</code></pre>
+            </div>
+            
+            <div style="max-width: 800px; margin: 1rem auto; padding: 1rem; background: rgba(76, 201, 240, 0.1); border-radius: 10px;">
+                <h3>🔍 Hallazgos Principales</h3>
+                <p>Los <strong>humanos dominan</strong> con 36 personajes (64%). 
+                Los <strong>droides</strong> son segunda especie más común. 
+                Existe una <strong>gran diversidad</strong> con 30+ especies diferentes.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SLIDE 5: TABLA DE DATOS -->
+    <section>
+        <div class="slide-content">
+            <h2>📋 Tabla Resumen: Distribución de Especies</h2>
+            
+            <div style="width: 90%; max-width: 800px; margin: 2rem auto; background: rgba(255, 255, 255, 0.1); padding: 1.5rem; border-radius: 10px; border: 2px solid #ffe81f;">
+                <table style="width: 100%; border-collapse: collapse; color: white;">
+                    <thead>
+                        <tr style="background: rgba(255, 232, 31, 0.3);">
+                            <th style="padding: 12px; text-align: left; border-bottom: 2px solid #ffe81f;">Especie</th>
+                            <th style="padding: 12px; text-align: center; border-bottom: 2px solid #ffe81f;">Cantidad</th>
+                            <th style="padding: 12px; text-align: center; border-bottom: 2px solid #ffe81f;">Porcentaje</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="border-bottom: 1px solid rgba(255, 232, 31, 0.2);">
+                            <td style="padding: 10px;">Human</td>
+                            <td style="padding: 10px; text-align: center; color: #ffe81f;">36</td>
+                            <td style="padding: 10px; text-align: center; color: #4cc9f0;">64.3%</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid rgba(255, 232, 31, 0.2);">
+                            <td style="padding: 10px;">Droid</td>
+                            <td style="padding: 10px; text-align: center;">4</td>
+                            <td style="padding: 10px; text-align: center;">7.1%</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid rgba(255, 232, 31, 0.2);">
+                            <td style="padding: 10px;">Gungan</td>
+                            <td style="padding: 10px; text-align: center;">3</td>
+                            <td style="padding: 10px; text-align: center;">5.4%</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid rgba(255, 232, 31, 0.2);">
+                            <td style="padding: 10px;">Zabrak</td>
+                            <td style="padding: 10px; text-align: center;">2</td>
+                            <td style="padding: 10px; text-align: center;">3.6%</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid rgba(255, 232, 31, 0.2);">
+                            <td style="padding: 10px;">Wookie</td>
+                            <td style="padding: 10px; text-align: center;">2</td>
+                            <td style="padding: 10px; text-align: center;">3.6%</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid rgba(255, 232, 31, 0.2);">
+                            <td style="padding: 10px;">Otras 25 especies</td>
+                            <td style="padding: 10px; text-align: center;">9</td>
+                            <td style="padding: 10px; text-align: center;">16.0%</td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr style="background: rgba(76, 201, 240, 0.2);">
+                            <td style="padding: 12px; font-weight: bold;">TOTAL</td>
+                            <td style="padding: 12px; text-align: center; font-weight: bold; color: #ffe81f;">56</td>
+                            <td style="padding: 12px; text-align: center; font-weight: bold; color: #4cc9f0;">100%</td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+            
+            <div class="code-minimal fade-in">
+                <h3>Código para generar estadísticas:</h3>
+                <pre><code><span class="code-comment"># Calcular frecuencias y porcentajes</span>
+species_counts = pd.Series(species_list).value_counts()
+total = species_counts.sum()
+percentages = (species_counts / total * 100).round(1)
+
+<span class="code-comment"># Crear DataFrame con resultados</span>
+result_df = pd.DataFrame({
+    'Cantidad': species_counts,
+    'Porcentaje': percentages
+})</code></pre>
+            </div>
+        </div>
+    </section>
+
+    <!-- SLIDE 6: VISUALIZACIÓN ADICIONAL -->
+    <section>
+        <div class="slide-content">
+            <h2>🎨 Visualización Adicional</h2>
+            
+            <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; margin: 2rem 0;">
+                <div style="flex: 1; min-width: 300px; max-width: 400px;">
+                    <div class="main-chart" style="margin: 0;">
+                        <div class="chart-title">Comparación de Géneros</div>
+                        <img src="https://i.imgur.com/example1.png" alt="Comparación de géneros" class="chart-img">
+                        <p style="font-size: 0.9rem; text-align: center; margin-top: 0.5rem;">Gráfico de barras comparativo</p>
+                    </div>
+                </div>
+                
+                <div style="flex: 1; min-width: 300px; max-width: 400px;">
+                    <div class="main-chart" style="margin: 0;">
+                        <div class="chart-title">Distribución por Especie</div>
+                        <img src="https://i.imgur.com/example2.png" alt="Distribución por especie" class="chart-img">
+                        <p style="font-size: 0.9rem; text-align: center; margin-top: 0.5rem;">Gráfico de dispersión</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="code-minimal fade-in">
+                <h3>Código para gráficos avanzados:</h3>
+                <pre><code><span class="code-comment"># Personalización avanzada de gráficos</span>
+fig, axes = plt.subplots(1, 2, figsize=(15, 5))
+
+<span class="code-comment"># Gráfico 1: Barras horizontales</span>
+species_counts.head(5).plot(kind='barh', ax=axes[0], color='#4cc9f0')
+axes[0].set_title('Top 5 Especies')
+
+<span class="code-comment"># Gráfico 2: Dispersión con seaborn</span>
+sns.scatterplot(data=df_people, x='height', y='mass', hue='gender', ax=axes[1])
+axes[1].set_title('Relación Altura vs Peso')
+
+plt.tight_layout()
+plt.show()</code></pre>
+            </div>
+        </div>
+    </section>
+
+    <!-- SLIDE 7: RETOS TÉCNICOS -->
+    <section>
+        <div class="slide-content">
+            <h2>⚡ Retos Técnicos Superados</h2>
+            
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; max-width: 900px; margin: 2rem auto;">
+                <div style="background: rgba(255, 107, 107, 0.1); padding: 1.5rem; border-radius: 10px; border: 2px solid #ff6b6b;">
+                    <h3 style="color: #ff6b6b;">🔄 Integración de Datos</h3>
+                    <p>Los personajes tenían URLs de especies en lugar de nombres. Creamos un diccionario de mapeo para relacionarlos.</p>
+                </div>
+                
+                <div style="background: rgba(76, 201, 240, 0.1); padding: 1.5rem; border-radius: 10px; border: 2px solid #4cc9f0;">
+                    <h3 style="color: #4cc9f0;">🎯 Selección de Gráficos</h3>
+                    <p>Elegimos gráficos circulares para proporciones y de barras para comparaciones, los más efectivos para cada caso.</p>
+                </div>
+                
+                <div style="background: rgba(247, 37, 133, 0.1); padding: 1.5rem; border-radius: 10px; border: 2px solid #f72585;">
+                    <h3 style="color: #f72585;">🧹 Limpieza de Datos</h3>
+                    <p>Manejo de valores nulos y asignación de 'Human' como especie por defecto cuando no estaba definida.</p>
+                </div>
+                
+                <div style="background: rgba(114, 9, 183, 0.1); padding: 1.5rem; border-radius: 10px; border: 2px solid #7209b7;">
+                    <h3 style="color: #7209b7;">🎨 Visualización Clara</h3>
+                    <p>Personalizamos colores, tamaños y etiquetas para que los gráficos fueran comprensibles al primer vistazo.</p>
+                </div>
+            </div>
+            
+            <div class="code-minimal fade-in">
+                <h3>Solución para integración de datos:</h3>
+                <pre><code><span class="code-comment"># Diccionario para mapear URLs a nombres de especies</span>
+species_map = dict(zip(df_species['url'], df_species['name']))
+
+<span class="code-comment"># Asignar especie a cada personaje</span>
+def get_species(row):
+    if row['species']:
+        return species_map.get(row['species'][0], 'Desconocido')
+    return 'Human'
+
+df_people['especie_nombre'] = df_people.apply(get_species, axis=1)</code></pre>
+            </div>
+        </div>
+    </section>
+
+    <!-- SLIDE 8: CONCLUSIONES -->
+    <section>
+        <div class="slide-content">
+            <h2>📝 Conclusiones del Análisis</h2>
+            
+            <div style="max-width: 800px; margin: 2rem auto; background: rgba(255, 232, 31, 0.1); padding: 2rem; border-radius: 15px; border: 2px solid #ffe81f;">
+                <div style="text-align: left;">
+                    <div style="display: flex; align-items: start; margin: 1.5rem 0;">
+                        <div style="background: #ffe81f; color: #000; min-width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 1rem; font-weight: bold; font-size: 1.2rem;">1</div>
+                        <div>
+                            <h3 style="color: #ffe81f; margin-top: 0;">Predominio Humano</h3>
+                            <p>Los humanos representan el 64% de todos los personajes, mostrando una clara predominancia en el universo Star Wars.</p>
+                        </div>
+                    </div>
+                    
+                    <div style="display: flex; align-items: start; margin: 1.5rem 0;">
+                        <div style="background: #4cc9f0; color: #000; min-width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 1rem; font-weight: bold; font-size: 1.2rem;">2</div>
+                        <div>
+                            <h3 style="color: #4cc9f0; margin-top: 0;">Alta Diversidad</h3>
+                            <p>Se identificaron más de 30 especies diferentes, demostrando la riqueza biológica del universo creado.</p>
+                        </div>
+                    </div>
+                    
+                    <div style="display: flex; align-items: start; margin: 1.5rem 0;">
+                        <div style="background: #f72585; color: #fff; min-width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 1rem; font-weight: bold; font-size: 1.2rem;">3</div>
+                        <div>
+                            <h3 style="color: #f72585; margin-top: 0;">Visualización Efectiva</h3>
+                            <p>Los gráficos circulares y de barras permiten comunicar rápidamente los hallazgos principales del análisis.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="margin-top: 2rem;">
+                <h3>🔄 Flujo del Proyecto</h3>
+                <div style="display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 1rem; margin: 1rem 0;">
+                    <div style="background: #000428; padding: 0.8rem 1.5rem; border-radius: 25px; border: 2px solid #4cc9f0;">Extracción API</div>
+                    <div style="font-size: 1.5rem; color: #ffe81f;">→</div>
+                    <div style="background: #004e92; padding: 0.8rem 1.5rem; border-radius: 25px; border: 2px solid #4cc9f0;">Transformación</div>
+                    <div style="font-size: 1.5rem; color: #ffe81f;">→</div>
+                    <div style="background: #7209b7; padding: 0.8rem 1.5rem; border-radius: 25px; border: 2px solid #4cc9f0;">Análisis</div>
+                    <div style="font-size: 1.5rem; color: #ffe81f;">→</div>
+                    <div style="background: #f72585; padding: 0.8rem 1.5rem; border-radius: 25px; border: 2px solid #4cc9f0;">Visualización</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SLIDE 9: FINAL -->
+    <section>
+        <div class="slide-content">
+            <div style="text-align: center;">
+                <h1 style="color: #ffe81f; font-size: 3rem; margin-bottom: 1rem;">¡Gracias!</h1>
+                <p style="font-size: 1.5rem; color: #4cc9f0; margin-bottom: 2rem;">Presentación del equipo de Star Wars Analysis</p>
+                
+                <div style="max-width: 600px; margin: 0 auto 2rem;">
+                    <img src="https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif" 
+                         alt="Star Wars GIF" 
+                         style="width: 100%; border-radius: 15px; border: 3px solid #ffe81f;">
+                </div>
+                
+                <div style="background: rgba(255, 232, 31, 0.1); padding: 1.5rem; border-radius: 10px; display: inline-block; border: 2px solid #ffe81f;">
+                    <h3 style="color: #ffe81f; margin-bottom: 0.5rem;">"Que la Fuerza esté con ustedes"</h3>
+                    <p style="color: #e0e0e0; font-style: italic;">- Equipo de Análisis de Datos</p>
+                </div>
+                
+                <div style="margin-top: 3rem;">
+                    <h3>¿Preguntas?</h3>
+                    <p style="color: #4cc9f0;">Estamos aquí para responder cualquier duda sobre nuestro análisis</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+</main>
+
+<div class="nav-buttons">
+    <button id="prev">◄ Anterior</button>
+    <span id="slide-counter" style="background: rgba(0, 0, 0, 0.8); color: #ffe81f; padding: 0.8rem 1.5rem; border-radius: 5px; font-weight: bold; border: 2px solid #ffe81f;">1 / 9</span>
+    <button id="next">Siguiente ►</button>
+</div>
+
+<footer>
+    <p>© 2025 - Exposición LP2 - Análisis API Star Wars - Equipo UNALM</p>
+</footer>
+
+<script>
+let currentSlide = 0;
+const slides = document.querySelectorAll('section');
+const totalSlides = slides.length;
+const main = document.getElementById('slides');
+const slideCounter = document.getElementById('slide-counter');
+
+function showSlide(index) {
+    if (index < 0) index = 0;
+    if (index >= totalSlides) index = totalSlides - 1;
+    currentSlide = index;
+    main.style.transform = 'translateX(' + (-index * 100) + 'vw)';
+    slideCounter.textContent = `${index + 1} / ${totalSlides}`;
+    
+    // Añadir animación a elementos con clase fade-in
+    const fadeElements = slides[index].querySelectorAll('.fade-in');
+    fadeElements.forEach(el => {
+        el.style.animation = 'none';
+        setTimeout(() => {
+            el.style.animation = 'fadeIn 0.8s ease-out';
+        }, 10);
+    });
+}
+
+// Inicializar
+showSlide(0);
+
+document.getElementById('next').addEventListener('click', () => showSlide(currentSlide + 1));
+document.getElementById('prev').addEventListener('click', () => showSlide(currentSlide - 1));
+
+// Navegación con teclado
+document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') {
+        showSlide(currentSlide + 1);
+        e.preventDefault();
+    }
+    if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+        showSlide(currentSlide - 1);
+        e.preventDefault();
+    }
+});
+
+// Navegación táctil
+let touchStartX = 0;
+let touchEndX = 0;
+
+document.addEventListener('touchstart', (e) => {
+    touchStartX = e.changedTouches[0].screenX;
+});
+
+document.addEventListener('touchend', (e) => {
+    touchEndX = e.changedTouches[0].screenX;
+    handleSwipe();
+});
+
+function handleSwipe() {
+    const swipeThreshold = 50;
+    
+    if (touchEndX < touchStartX - swipeThreshold) {
+        showSlide(currentSlide + 1);
+    }
+    
+    if (touchEndX > touchStartX + swipeThreshold) {
+        showSlide(currentSlide - 1);
+    }
+}
+
+// Navegación con clic en slide (excepto botones)
+main.addEventListener('click', (e) => {
+    if (!e.target.closest('button') && !e.target.closest('.code-minimal')) {
+        const rect = e.target.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const width = rect.width;
+        
+        // Click en lado derecho -> siguiente
+        if (x > width * 0.7) {
+            showSlide(currentSlide + 1);
+        }
+        // Click en lado izquierdo -> anterior
+        else if (x < width * 0.3) {
+            showSlide(currentSlide - 1);
+        }
+    }
+});
+</script>
+
+</body>
+</html>
