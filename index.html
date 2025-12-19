@@ -48,11 +48,12 @@ section {
     background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
     display: flex;
     flex-direction: column;
-    justify-content: flex-start; 
+    justify-content: flex-start;
     align-items: center;
-    overflow-y: auto;
+    overflow: hidden; 
     color: white;
 }
+
 
 /* === TÍTULOS === */
 h1 {
@@ -208,11 +209,7 @@ footer {
     max-width: 1200px;
     height: calc(100vh - 120px);
     overflow-y: auto;
-    padding-right: 10px;
-}
-
-.slide-content h2 {
-    margin-top: 0;
+    padding: 30px 10px 0 0; 
 }
 
 
@@ -313,7 +310,8 @@ footer {
     <!-- SLIDE 2: INTRODUCCIÓN -->
     <section>
         <div class="slide-content">
-    <h2>🎯 Objetivo del Proyecto</h2>
+            
+            <h2>🎯 Objetivo del Proyecto</h2>
             
             <div class="info-card fade-in">
                 <p>Realizar un análisis completo de datos del universo Star Wars utilizando la API pública SWAPI, con enfoque en:</p>
@@ -374,6 +372,49 @@ plt.show()</code></pre>
                 <p>El gráfico muestra que la mayoría de personajes son masculinos, seguidos por femeninos. 
                 Un porcentaje menor corresponde a personajes sin género definido o droides.</p>
             </div>
+<!-- TABLA -->
+            <div style="max-width: 800px; margin: 1rem auto; padding: 1rem;
+                        background: rgba(255, 232, 31, 0.1); border-radius: 10px;">
+                <h3>📋 Tabla de Distribución de Género</h3>
+            
+                <table style="width:100%; border-collapse:collapse; text-align:center;">
+                    <thead>
+                        <tr style="background-color:#2c3e50; color:white;">
+                            <th style="padding:8px;">Género</th>
+                            <th style="padding:8px;">Cantidad</th>
+                            <th style="padding:8px;">Porcentaje (%)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="padding:8px;">Male</td>
+                            <td style="padding:8px;">60</td>
+                            <td style="padding:8px;">73.2</td>
+                        </tr>
+                        <tr>
+                            <td style="padding:8px;">Female</td>
+                            <td style="padding:8px;">17</td>
+                            <td style="padding:8px;">20.7</td>
+                        </tr>
+                        <tr>
+                            <td style="padding:8px;">N/A</td>
+                            <td style="padding:8px;">3</td>
+                            <td style="padding:8px;">3.7</td>
+                        </tr>
+                        <tr>
+                            <td style="padding:8px;">Hermaphrodite</td>
+                            <td style="padding:8px;">1</td>
+                            <td style="padding:8px;">1.2</td>
+                        </tr>
+                        <tr>
+                            <td style="padding:8px;">None</td>
+                            <td style="padding:8px;">1</td>
+                            <td style="padding:8px;">1.2</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
         </div>
     </section>
 
