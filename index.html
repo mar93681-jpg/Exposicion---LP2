@@ -350,7 +350,7 @@ footer {
     <!-- SLIDE 3: GRÁFICO 1 - DISTRIBUCIÓN DE GÉNEROS -->
     <section>
         <div class="slide-content">
-            <h2> Gráfico 1: Distribución de Géneros </h2>
+            <h2> 📊 Gráfico 1: Distribución de Géneros </h2>
             
             <div class="main-chart fade-in">
                 <div class="chart-title">Proporción de Géneros en Personajes de Star Wars</div>
@@ -375,54 +375,70 @@ plt.show()</code></pre>
                 Un porcentaje menor corresponde a personajes sin género definido o droides.</p>
             </div>
 <!-- TABLA -->
-            <div style="max-width: 800px; margin: 1rem auto; padding: 1rem;
-                        background: rgba(255, 232, 31, 0.1); border-radius: 10px;">
-                <h3>📋 Tabla de Distribución de Género</h3>
+            <div style="width: 90%; max-width: 800px; margin: 2rem auto;
+                        background: rgba(255, 255, 255, 0.1);
+                        padding: 1.5rem; border-radius: 10px;
+                        border: 2px solid #ffe81f;">
             
-                <table style="width:100%; border-collapse:collapse; text-align:center;">
+                <table style="width: 100%; border-collapse: collapse; color: white;">
                     <thead>
-                        <tr style="background-color:#2c3e50; color:white;">
-                            <th style="padding:8px;">Género</th>
-                            <th style="padding:8px;">Cantidad</th>
-                            <th style="padding:8px;">Porcentaje (%)</th>
+                        <tr style="background: rgba(255, 232, 31, 0.3);">
+                            <th style="padding: 12px; text-align: left; border-bottom: 2px solid #ffe81f;">Género</th>
+                            <th style="padding: 12px; text-align: center; border-bottom: 2px solid #ffe81f;">Cantidad</th>
+                            <th style="padding: 12px; text-align: center; border-bottom: 2px solid #ffe81f;">Porcentaje</th>
                         </tr>
                     </thead>
+            
                     <tbody>
-                        <tr>
-                            <td style="padding:8px;">Male</td>
-                            <td style="padding:8px;">60</td>
-                            <td style="padding:8px;">73.2</td>
+                        <tr style="border-bottom: 1px solid rgba(255, 232, 31, 0.2);">
+                            <td style="padding: 10px; color:#4cc9f0;">Male</td>
+                            <td style="padding: 10px; text-align: center; color:#ffe81f;">60</td>
+                            <td style="padding: 10px; text-align: center; color:#4cc9f0;">73.2%</td>
                         </tr>
-                        <tr>
-                            <td style="padding:8px;">Female</td>
-                            <td style="padding:8px;">17</td>
-                            <td style="padding:8px;">20.7</td>
+            
+                        <tr style="border-bottom: 1px solid rgba(255, 232, 31, 0.2);">
+                            <td style="padding: 10px; color:#f72585;">Female</td>
+                            <td style="padding: 10px; text-align: center;">17</td>
+                            <td style="padding: 10px; text-align: center;">20.7%</td>
                         </tr>
-                        <tr>
-                            <td style="padding:8px;">N/A</td>
-                            <td style="padding:8px;">3</td>
-                            <td style="padding:8px;">3.7</td>
+            
+                        <tr style="border-bottom: 1px solid rgba(255, 232, 31, 0.2);">
+                            <td style="padding: 10px; color:#adb5bd;">N/A</td>
+                            <td style="padding: 10px; text-align: center;">3</td>
+                            <td style="padding: 10px; text-align: center;">3.7%</td>
                         </tr>
-                        <tr>
-                            <td style="padding:8px;">Hermaphrodite</td>
-                            <td style="padding:8px;">1</td>
-                            <td style="padding:8px;">1.2</td>
+            
+                        <tr style="border-bottom: 1px solid rgba(255, 232, 31, 0.2);">
+                            <td style="padding: 10px; color:#9d4edd;">Hermaphrodite</td>
+                            <td style="padding: 10px; text-align: center;">1</td>
+                            <td style="padding: 10px; text-align: center;">1.2%</td>
                         </tr>
-                        <tr>
-                            <td style="padding:8px;">None</td>
-                            <td style="padding:8px;">1</td>
-                            <td style="padding:8px;">1.2</td>
+            
+                        <tr style="border-bottom: 1px solid rgba(255, 232, 31, 0.2);">
+                            <td style="padding: 10px; color:#000000;">None</td>
+                            <td style="padding: 10px; text-align: center;">1</td>
+                            <td style="padding: 10px; text-align: center;">1.2%</td>
                         </tr>
                     </tbody>
+            
+                    <tfoot>
+                        <tr style="background: rgba(76, 201, 240, 0.2);">
+                            <td style="padding: 12px; font-weight: bold;">TOTAL</td>
+                            <td style="padding: 12px; text-align: center; font-weight: bold; color:#ffe81f;">82</td>
+                            <td style="padding: 12px; text-align: center; font-weight: bold; color:#4cc9f0;">100%</td>
+                        </tr>
+                    </tfoot>
                 </table>
             </div>
-            
+
             <div class="code-minimal fade-in">
                 <h3>Código para generar esta tabla:</h3>
                 <pre><code><span class="code-comment"># Tabla de distribución de géneros</span>
-df_species_table = species_counts.reset_index()
-df_species_table.columns = ['Especie', 'Cantidad de personajes']
-df_species_table</code></pre>
+tabla_genero = df_people['gender'].value_counts().reset_index()
+tabla_genero.columns = ['Género', 'Cantidad']
+total_personajes = tabla_genero['Cantidad'].sum()
+tabla_genero['Porcentaje (%)'] = (tabla_genero['Cantidad'] / total_personajes * 100).round(1)
+tabla_genero</code></pre>
             </div>
         </div>
     </section>
