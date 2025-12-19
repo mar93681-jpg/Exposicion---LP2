@@ -485,46 +485,46 @@ result_df = pd.DataFrame({
     </section>
 
     <!-- SLIDE 6: VISUALIZACIÓN ADICIONAL -->
-    <section>
-        <div class="slide-content">
-            <h2>🎨 Visualización Adicional</h2>
-            
-            <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; margin: 2rem 0;">
-                <div style="flex: 1; min-width: 300px; max-width: 400px;">
-                    <div class="main-chart" style="margin: 0;">
-                        <div class="chart-title">Comparación de Géneros</div>
-                        <img src="https://raw.githubusercontent.com/mar93681-jpg/Exposicion---LP2/refs/heads/main/graficos/genero%20x%20species.png" alt="Comparación de géneros" class="chart-img">
-                        <p style="font-size: 0.9rem; text-align: center; margin-top: 0.5rem;">Gráfico de barras comparativo</p>
-                    </div>
-                </div>
-                
-                <div style="flex: 1; min-width: 300px; max-width: 400px;">
-                    <div class="main-chart" style="margin: 0;">
-                        <div class="chart-title">Distribución por Especie</div>
-                        <img src="https://i.imgur.com/example2.png" alt="Distribución por especie" class="chart-img">
-                        <p style="font-size: 0.9rem; text-align: center; margin-top: 0.5rem;">Gráfico de dispersión</p>
-                    </div>
+<section>
+    <div class="slide-content">
+        <h2>🎨 Visualización Adicional</h2>
+
+        <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; margin: 2rem 0;">
+            <div style="flex: 1; min-width: 300px; max-width: 400px;">
+                <div class="main-chart" style="margin: 0;">
+                    <div class="chart-title">Comparación de Géneros</div>
+                    <img src="https://raw.githubusercontent.com/mar93681-jpg/Exposicion---LP2/refs/heads/main/graficos/genero%20x%20species.png" alt="Comparación de géneros" class="chart-img">
+                    <p style="font-size: 0.9rem; text-align: center; margin-top: 0.5rem;">Gráfico de barras comparativo</p>
                 </div>
             </div>
-            
-            <div class="code-minimal fade-in">
-                <h3>Código para gráficos avanzados:</h3>
-                <pre><code><span class="code-comment"># Personalización avanzada de gráficos</span>
+
+            <div style="flex: 1; min-width: 300px; max-width: 400px;">
+                <div class="main-chart" style="margin: 0;">
+                    <div class="chart-title">Especie vs Color de Ojos</div>
+                    <img src="https://raw.githubusercontent.com/mar93681-jpg/Exposicion---LP2/refs/heads/main/graficos/especievscolor.png" alt="Gráfico Especie vs Color de Ojos" class="chart-img">
+                    <p style="font-size: 0.9rem; text-align: center; margin-top: 0.5rem;">Gráfico de dispersión</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="code-minimal fade-in">
+            <h3>Código para gráficos avanzados:</h3>
+            <pre><code><span class="code-comment"># Personalización avanzada de gráficos</span>
 fig, axes = plt.subplots(1, 2, figsize=(15, 5))
 
 <span class="code-comment"># Gráfico 1: Barras horizontales</span>
 species_counts.head(5).plot(kind='barh', ax=axes[0], color='#4cc9f0')
 axes[0].set_title('Top 5 Especies')
 
-<!-- Imagen del gráfico especie vs color de ojos -->
-<img src="graficos/especievscolor.png" alt="Gráfico Especie vs Color de Ojos" 
-     style="width: 100%; max-height: 250px; object-fit: contain; margin: 10px 0; border: 2px solid #4cc9f0; border-radius: 8px;">
+<span class="code-comment"># Gráfico 2: Gráfico de dispersión </span>
+sns.scatterplot(data=df_people, x='height', y='mass', hue='gender', ax=axes[1])
+axes[1].set_title('Especie vs Color de Ojos')
 
 plt.tight_layout()
 plt.show()</code></pre>
-            </div>
         </div>
-    </section>
+    </div>
+</section>
 
     <!-- SLIDE 7: RETOS TÉCNICOS -->
     <section>
