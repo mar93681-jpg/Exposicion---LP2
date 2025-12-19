@@ -30,7 +30,9 @@ header {
     z-index: 10;
     border-bottom: 3px solid #ffe81f;
     font-family: 'Arial Black', sans-serif;
+    height: 100px;
 }
+
 
 /* === CONTENEDOR PRINCIPAL === */
 main {
@@ -207,7 +209,7 @@ footer {
 .slide-content {
     width: 90%;
     max-width: 1200px;
-    height: calc(100vh - 120px);
+    height: calc(100vh - 100px);
     overflow-y: auto;
     padding: 30px 10px 0 0; 
 }
@@ -415,6 +417,13 @@ plt.show()</code></pre>
                 </table>
             </div>
             
+            <div class="code-minimal fade-in">
+                <h3>Código para generar esta tabla:</h3>
+                <pre><code><span class="code-comment"># Tabla de distribución de géneros</span>
+df_species_table = species_counts.reset_index()
+df_species_table.columns = ['Especie', 'Cantidad de personajes']
+df_species_table</code></pre>
+            </div>
         </div>
     </section>
 
