@@ -15,3 +15,17 @@
 **Docente:** Denise Rosalyn Chalan Llajaruna
 --
 ## 🧮 Evaluación Grupal (10%)
+**Tema:**  
+> Uso del api, analizando los resultados mediante graficas y tablas
+
+**Fecha de entrega y presntación:** 19 de diciembre 
+## 👥 Integrantes del grupo
+
+| Integrante   | Usuario   | Participación   |
+|---------------|----------|----------|
+| Malvacedo Quiñonez, Jean Franco  | Solitario03  | 100% |
+| Cruz Cruz, Hilary Penelope       | stella5555  | 100% |
+| Chávez Mendoza, Maria Fernanda   | mar93681-jpg  | 100% |
+| Mejia Auccapoma, Piero Cesar     | PC-011  | 100% |
+| Castillo Torres, Omar Sebastian     | PC-01 | 100% |
+| López Ruiz, Jhordy Fabrizio    | PC-011  | 100% |
