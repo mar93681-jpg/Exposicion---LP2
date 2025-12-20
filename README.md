@@ -29,3 +29,6 @@
 | Mejia Auccapoma, Piero Cesar     |  100% |
 | Castillo Torres, Omar Sebastian     |  100% |
 | López Ruiz, Jhordy Fabrizio    |  100% |
+
+## Objetivos:
+- Extraer datos de personajes, especies y planetas asegurando el tratamiento adecuado de datos nulos o inconsistentes.
