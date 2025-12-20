@@ -22,7 +22,7 @@
 ## 👥 Integrantes del grupo
 
 | Integrante   |  Participación   |  Usuario   |
-|---------------|----------|----------|
+|---------------|:----------:|:----------:|
 | Malvacedo Quiñonez, Jean Franco   |  100% | Solitario03 |
 | Cruz Cruz, Hilary Penelope   |  100% | stella5555 |
 | Chávez Mendoza, Maria Fernanda   |  100% | mar93681-jpg |
