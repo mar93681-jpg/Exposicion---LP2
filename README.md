@@ -21,14 +21,14 @@
 **Fecha de entrega y presntación:** 19 de diciembre 
 ## 👥 Integrantes del grupo
 
-| Integrante   |  Participación   |  Usuario   |
+| Integrante   |  Usuario   |  Participación   |
 |---------------|:----------:|:----------:|
-| Malvacedo Quiñonez, Jean Franco   |  100% | Solitario03 |
-| Cruz Cruz, Hilary Penelope   |  100% | stella5555 |
-| Chávez Mendoza, Maria Fernanda   |  100% | mar93681-jpg |
-| Mejia Auccapoma, Piero Cesar   |  100% | PC-011 |
-| Castillo Torres, Omar Sebastian   |  100% | Sebas20050700 |
-| López Ruiz, Jhordy Fabrizio   |  100% | JhorLop134 |
+| Malvacedo Quiñonez, Jean Franco   | Solitario03 |  100% |
+| Cruz Cruz, Hilary Penelope   | stella5555 |  100% |
+| Chávez Mendoza, Maria Fernanda   | mar93681-jpg |  100% |
+| Mejia Auccapoma, Piero Cesar   | PC-011 |  100% |
+| Castillo Torres, Omar Sebastian   | Sebas20050700 |  100% |
+| López Ruiz, Jhordy Fabrizio   | JhorLop134 |  100% |
 
 ## Objetivos:
 - Extraer datos de personajes, especies y planetas asegurando el tratamiento adecuado de datos nulos o inconsistentes.
