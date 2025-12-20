@@ -31,6 +31,6 @@
 | López Ruiz, Jhordy Fabrizio   | JhorLop134 |  100% |
 
 ## 📌 Objetivos:
-- Extraer datos de personajes, especies y planetas asegurando el tratamiento adecuado de datos nulos o inconsistentes.
+- Extraer datos de **personajes, especies y planetas** asegurando el tratamiento adecuado de datos nulos o inconsistentes.
 - Evaluar la distribución de variables clave, tales como la diversidad de géneros, la clasificación de especies y el color de los ojos.
 - Crear visualizaciones efectivas que permitan interpretar tendencias de forma inmediata, facilitando la comunicación de los hallazgos.
