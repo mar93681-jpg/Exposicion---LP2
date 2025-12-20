@@ -661,6 +661,104 @@ plt.show()</code></pre>
 
 
 <!-- SLIDE 7: COLOR DE OJOS POR ESPECIE -->
+<section>
+    <div class="slide-content">
+        <h2>👁️ Distribución de Colores de Ojos por Especie</h2>
+
+        <!-- Gráfico: Barras apiladas -->
+        <div style="width: 95%; max-width: 900px; margin: 2.5rem auto;">
+            <div class="main-chart">
+                <div class="chart-title">
+                    Distribución de Colores de Ojos por Especie
+                </div>
+
+                <img src="https://raw.githubusercontent.com/mar93681-jpg/Exposicion---LP2/refs/heads/main/graficos/ojos%20por%20especie.png"
+                     alt="Gráfico de colores de ojos por especie"
+                     class="chart-img">
+
+                <p style="text-align: center; margin-top: 1rem;">
+                    Gráfico de barras apiladas mostrando la distribución de colores de ojos
+                </p>
+            </div>
+        </div>
+
+        <!-- Código: Gráfico -->
+        <div class="code-minimal fade-in">
+            <h3>Código – Gráfico de barras apiladas</h3>
+            <pre><code><span class="code-comment"># Barras apiladas: Color de ojos por especie</span>
+tabla_top.plot(
+    kind='bar',
+    stacked=True,
+    figsize=(12,7),
+    color=colors
+)
+
+plt.title('Distribución de Colores de Ojos por Especie')
+plt.xlabel('Especie')
+plt.ylabel('Cantidad de personajes')
+plt.legend(
+    title='Color de ojos',
+    bbox_to_anchor=(1.05, 1),
+    loc='upper left'
+)
+plt.tight_layout()
+plt.show()</code></pre>
+        </div>
+
+        <!-- Tabla: Heatmap -->
+        <div style="width: 95%; max-width: 900px; margin: 3rem auto;">
+            <div class="main-chart">
+                <div class="chart-title">
+                    Tabla de Contingencia: Especie vs Color de Ojos
+                </div>
+
+                <img src="https://raw.githubusercontent.com/mar93681-jpg/Exposicion---LP2/refs/heads/main/graficos/especievscolor.png"
+                     alt="Tabla de contingencia especie vs color de ojos"
+                     class="chart-img">
+
+                <p style="text-align: center; margin-top: 1rem;">
+                    Mapa de calor para identificar patrones genéticos entre especies
+                </p>
+            </div>
+        </div>
+
+        <!-- Código: Tabla -->
+        <div class="code-minimal fade-in">
+            <h3>Código – Tabla de contingencia (Heatmap)</h3>
+            <pre><code><span class="code-comment"># Tabla de contingencia: Especie vs Color de Ojos</span>
+plt.figure(figsize=(12, 8))
+sns.heatmap(
+    contingency_table.iloc[:-1, :-1],  <span class="code-comment"># Excluir totales</span>
+    annot=True,
+    fmt='d',
+    cmap='YlOrRd',
+    linewidths=0.5
+)
+
+plt.title(
+    'Tabla de Contingencia: Especie vs Color de Ojos (Patrones Genéticos)',
+    fontsize=14
+)
+plt.xlabel('Color de Ojos')
+plt.ylabel('Especie')
+plt.tight_layout()
+plt.show()</code></pre>
+        </div>
+
+        <!-- Interpretación breve -->
+        <div class="info-card fade-in">
+            <h3>🔍 Interpretación</h3>
+            <p>
+                El gráfico muestra la diversidad de colores de ojos por especie,
+                mientras que la tabla de calor permite identificar patrones dominantes
+                y combinaciones poco frecuentes.
+            </p>
+        </div>
+    </div>
+</section>
+
+
+
 
     <!-- SLIDE 8: RETOS TÉCNICOS -->
     <section>
